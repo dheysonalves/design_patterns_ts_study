@@ -1,5 +1,10 @@
-class MyDatabaseSingleton {
+interface User {
+	name: string;
+	age: number;
+}
+export class MyDatabaseSingleton {
 	private static instance: MyDatabaseSingleton | null = null;
+	private users: User[] = [];
 
 	private constructor() {}
 
@@ -10,10 +15,19 @@ class MyDatabaseSingleton {
 
 		return MyDatabaseSingleton.instance;
 	}
+
+	add(user: User): void {
+		this.users.push(user);
+	}
+
+	remove(index: number): void {
+		this.users.splice(index, 1);
+	}
+
+	show(): void {
+		for (const user of this.users) {
+			console.log(user);
+		}
+	}
 }
-
-const db1 = MyDatabaseSingleton.getInstance();
-const db2 = MyDatabaseSingleton.getInstance();
-
-console.log(db1 === db2);
 
