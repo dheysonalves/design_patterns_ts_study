@@ -1,10 +1,13 @@
 import { MyDatabaseSingleton } from './database/my-database-singleton';
-import './module_a';
+import { DatabaseModule } from './database/my-database-module';
+import {myDatabaseModuleA} from './module_a';
 
-const instance = MyDatabaseSingleton.getInstance();
+const myDatabaseModuleB = DatabaseModule;
 
-instance.add({ name: 'Docker', age: 30 });
-instance.add({ name: 'Rubber', age: 30 });
-instance.add({ name: 'Pythony', age: 30 });
+myDatabaseModuleB.add({ name: 'Docker', age: 30 });
+myDatabaseModuleB.add({ name: 'Rubber', age: 30 });
+myDatabaseModuleB.add({ name: 'Pythony', age: 30 });
 
-instance.show();
+myDatabaseModuleB.show();
+
+console.log(myDatabaseModuleA === myDatabaseModuleB);
